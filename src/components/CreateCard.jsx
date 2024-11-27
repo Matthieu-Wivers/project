@@ -5,7 +5,7 @@ import uniqid from "uniqid";
 import { useReducer } from 'react';
 import { useState } from 'react';
 
-const StyledEditCard = styled.div`
+const StyledCreateCard = styled.div`
     width: 900px; 
     height: 31.25rem;
     background: #eeeeee;
@@ -62,20 +62,23 @@ const StyledEditCard = styled.div`
     & .task {
 
         &>div {
-
+    
             &>ol {
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
 
                 &>li {
-                    display: flex;
-                    height: 20px;
-                    align-items: center;
-                    gap: 20px;
+                    
+                    &>div {
+                        height: 20px;
+                        display: flex;
+                        align-items: center;
+                        gap: 20px;
 
-                    &>button {
-                        border-radius: 15px;
+                        &>button {
+                            border-radius: 15px;
+                        }
                     }
                 }
             }
@@ -85,7 +88,7 @@ const StyledEditCard = styled.div`
     
 `
 
-const EditCard = () => {
+const CreateCard = () => {
     // Import HTML elements
     let list = document.querySelector('ol');
     let newTask = document.querySelector('#newTask');
@@ -106,8 +109,10 @@ const EditCard = () => {
     
     async function createTask(){    // Add a new task from the value of #newTaskBar text area   
         list.innerHTML = list.innerHTML + `<li> 
-                                                <p>${newTask.value}</p>
-                                                <button>Delete</button>
+                                                <div>
+                                                    <p>${newTask.value}</p>
+                                                    <button>Delete</button>
+                                                </div>
                                             </li>`;
         newTask.value = '';   // Clear #newTaskBar text area
 
@@ -118,7 +123,7 @@ const EditCard = () => {
 
 
     return (
-        <StyledEditCard>
+        <StyledCreateCard>
             <div className="title">
                 <label htmlFor="title">Title</label>
                 <textarea type="text" name="title" id=""></textarea>
@@ -136,15 +141,15 @@ const EditCard = () => {
                     <textarea name="newTask" id="newTask"></textarea>
                     <div>
                         <button onClick={createTask}>Create task</button>
-                        <button onClick={handleClick}>Delete</button>
+                        <button onClick={handleClick}>Cancel</button>
                     </div>
                 </div>
                 <div>
 		            <ol></ol>
                 </div>
             </div>
-        </StyledEditCard>
+        </StyledCreateCard>
     );
 };
 
-export default EditCard;
+export default CreateCard;
