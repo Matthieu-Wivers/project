@@ -140,8 +140,7 @@ const EditCard = () => {
                     </div>
                 </div>
                 <div>
-		        <ol></ol>
-
+		            <ol></ol>
                 </div>
             </div>
         </StyledEditCard>
