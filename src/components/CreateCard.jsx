@@ -14,22 +14,36 @@ const StyledCreateCard = styled.div`
     padding: 10px 40px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, 'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     overflow: scroll;
+    flex-direction: column;
+    margin: auto;
 
-    & .title {
+    & .firstRowTitle {
         display: flex;
-        flex-direction: column;
-        margin-bottom: 20px;
+        justify-content: space-between;
 
-        &>label {
-            margin: 0px;
-            font-weight: normal;
-            font-size: 32px;
+        &>button {
+            height: 20px;
+            position: sticky; 
+            top: 1px;
+            right: 1px;
         }
 
-        &>textarea {
-            width: 18.75rem;
-            height: 2.2rem;
-            font-size: 28px;
+        &>.title {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+    
+            &>label {
+                margin: 0px;
+                font-weight: normal;
+                font-size: 32px;
+            }
+    
+            &>textarea {
+                width: 18.75rem;
+                height: 2.2rem;
+                font-size: 28px;
+            }
         }
     }
 
@@ -50,24 +64,33 @@ const StyledCreateCard = styled.div`
             
         }
     }
-
-        & .shown {
-            display: flex;
-        }
-
-        & .hidden {
-            display: none;
-        }
-
+    
     & .task {
 
-        &>div {
-    
+        &>.firstRowTask {
+
+            &>button {
+                cursor: pointer;
+            }
+        }
+
+        &>#newTaskBar {
+
+            &>div {
+
+                &>button {
+                    cursor: pointer;
+                }
+            }
+        }
+        
+        &>.taskList {
+            
             &>ol {
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
-
+                
                 &>li {
                     
                     &>div {
@@ -78,14 +101,21 @@ const StyledCreateCard = styled.div`
 
                         &>button {
                             border-radius: 15px;
+                            cursor: pointer;
                         }
                     }
                 }
             }
         }
-
     }
-    
+
+    & .shown {
+        display: flex;
+    }
+
+    & .hidden {
+        display: none;
+    }
 `
 
 const CreateCard = () => {
@@ -120,20 +150,28 @@ const CreateCard = () => {
             setIsActive(!isActive);  // Set class .hidden to #newTaskBar
     }
 
+    // Close the card edition window 
+    function closeCardEdition(){
+        document.querySelector('#createCard').style.display = "none";
+    }
+
 
 
     return (
-        <StyledCreateCard>
-            <div className="title">
-                <label htmlFor="title">Title</label>
-                <textarea type="text" name="title" id=""></textarea>
+        <StyledCreateCard id="createCard">
+            <div className="firstRowTitle">
+                <div className="title">
+                    <label htmlFor="title">Title</label>
+                    <textarea type="text" name="title" id=""></textarea>
+                </div>
+                <button onClick={closeCardEdition}>X</button>
             </div>
             <div className="description">
                 <label htmlFor="description">Description</label>
                 <textarea type="text" name="description" id="desc"></textarea>
             </div>
             <div className="task">
-                <div className="firstRow">
+                <div className="firstRowTask">
                     <h2>Task</h2>
                     <button onClick={handleClick}>Add task</button>
                 </div>
@@ -144,7 +182,7 @@ const CreateCard = () => {
                         <button onClick={handleClick}>Cancel</button>
                     </div>
                 </div>
-                <div>
+                <div className="taskList">
 		            <ol></ol>
                 </div>
             </div>
