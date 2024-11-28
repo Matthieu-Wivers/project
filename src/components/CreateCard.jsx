@@ -122,6 +122,8 @@ const CreateCard = () => {
     // Import HTML elements
     let list = document.querySelector('ol');
     let newTask = document.querySelector('#newTask');
+    let title = document.querySelector('#title');
+    let desc = document.querySelector('#desc');
 
     // Creation delay settings in ms
     function delay(ms) {
@@ -155,6 +157,8 @@ const CreateCard = () => {
     // Close the card edition window 
     function closeCardEdition(){
         document.querySelector('#createCard').style.display = "none";
+        title.value = '';
+        desc.value = '';
         setIsActive(false);
     }
 
@@ -165,7 +169,7 @@ const CreateCard = () => {
             <div className="firstRowTitle">
                 <div className="title">
                     <label htmlFor="title">Title</label>
-                    <textarea type="text" name="title" id=""></textarea>
+                    <textarea type="text" name="title" id="title"></textarea>
                 </div>
                 <button onClick={closeCardEdition}>X</button>
             </div>
