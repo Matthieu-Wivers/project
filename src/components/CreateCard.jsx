@@ -153,12 +153,13 @@ const CreateCard = () => {
     // Close the card edition window 
     function closeCardEdition(){
         document.querySelector('#createCard').style.display = "none";
+        setIsActive(false);
     }
 
 
 
     return (
-        <StyledCreateCard id="createCard">
+        <StyledCreateCard id="createCard"> 
             <div className="firstRowTitle">
                 <div className="title">
                     <label htmlFor="title">Title</label>
