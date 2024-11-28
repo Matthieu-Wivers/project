@@ -140,7 +140,9 @@ const CreateCard = () => {
     async function createTask(){    // Add a new task from the value of #newTaskBar text area   
         list.innerHTML = list.innerHTML + `<li> 
                                                 <div>
+                                                    <input type="checkbox" />
                                                     <p>${newTask.value}</p>
+                                                    <button>Edit</button>
                                                     <button>Delete</button>
                                                 </div>
                                             </li>`;
