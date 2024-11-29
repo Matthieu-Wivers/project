@@ -120,10 +120,10 @@ const StyledCreateCard = styled.div`
 
 const CreateCard = () => {
     // Import HTML elements
-    let list = document.querySelector('ol');
-    let newTask = document.querySelector('#newTask');
-    let title = document.querySelector('#title');
-    let desc = document.querySelector('#desc');
+    const list = document.querySelector('ol');
+    const newTask = document.querySelector('#newTask');
+    const title = document.querySelector('#title');
+    const desc = document.querySelector('#desc');
 
     // Creation delay settings in ms
     function delay(ms) {
