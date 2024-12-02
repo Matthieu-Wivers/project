@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import uniqid from "uniqid";
-import { useReducer } from 'react';
 import { useState } from 'react';
 
 const StyledCreateCard = styled.div`
@@ -16,6 +15,7 @@ const StyledCreateCard = styled.div`
     overflow: scroll;
     flex-direction: column;
     margin: auto;
+    position: absolute;
 
     & .firstRowTitle {
         display: flex;
@@ -188,11 +188,12 @@ const CreateCard = () => {
                         <button onClick={createTask}>Create task</button>
                         <button onClick={handleClick}>Cancel</button>
                     </div>
-                </div>
+                </div> 
                 <div className="taskList">
 		            <ol></ol>
                 </div>
             </div>
+            <button>Add card</button>
         </StyledCreateCard>
     );
 };
