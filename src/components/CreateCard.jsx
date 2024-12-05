@@ -5,103 +5,217 @@ import uniqid from "uniqid";
 import { useState } from 'react';
 
 const StyledCreateCard = styled.div`
-    width: 900px; 
-    height: 31.25rem;
-    background: #eeeeee;
-    border: 2px black solid;
-    border-radius: 15px;
-    padding: 10px 40px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, 'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    overflow: scroll;
-    flex-direction: column;
-    margin: auto;
-    position: absolute;
+    @media screen and (min-width: 1251px) {
+        width: 900px; 
+        height: 31.25rem;
+        background: #eeeeee;
+        border: 2px black solid;
+        border-radius: 15px;
+        padding: 10px 40px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, 'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        overflow: scroll;
+        flex-direction: column;
+        position: absolute;
+        top: auto;
+        left: 15%;
 
-    & .firstRowTitle {
-        display: flex;
-        justify-content: space-between;
+        & .firstRowTitle {
+            display: flex;
+            justify-content: space-between;
 
-        &>button {
-            height: 20px;
-            position: sticky; 
-            top: 1px;
-            right: 1px;
+            &>button {
+                height: 20px;
+                position: sticky; 
+                top: 1px;
+                right: 1px;
+            }
+
+            &>.title {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 20px;
+        
+                &>label {
+                    margin: 0px;
+                    font-weight: normal;
+                    font-size: 32px;
+                }
+        
+                &>textarea {
+                    width: 18.75rem;
+                    height: 2.2rem;
+                    font-size: 28px;
+                }
+            }
         }
 
-        &>.title {
+        & .description {
             display: flex;
             flex-direction: column;
-            margin-bottom: 20px;
-    
+
             &>label {
                 margin: 0px;
                 font-weight: normal;
                 font-size: 32px;
             }
-    
+
             &>textarea {
-                width: 18.75rem;
-                height: 2.2rem;
+                width: 890px;
+                height: 150px;
                 font-size: 28px;
+                
             }
         }
-    }
+        
+        & .task {
 
-    & .description {
-        display: flex;
-        flex-direction: column;
-
-        &>label {
-            margin: 0px;
-            font-weight: normal;
-            font-size: 32px;
-        }
-
-        &>textarea {
-            width: 890px;
-            height: 150px;
-            font-size: 28px;
-            
-        }
-    }
-    
-    & .task {
-
-        &>.firstRowTask {
-
-            &>button {
-                cursor: pointer;
-            }
-        }
-
-        &>#newTaskBar {
-
-            &>div {
+            &>.firstRowTask {
 
                 &>button {
                     cursor: pointer;
                 }
             }
-        }
-        
-        &>.taskList {
+
+            &>#newTaskBar {
+
+                &>div {
+
+                    &>button {
+                        cursor: pointer;
+                    }
+                }
+            }
             
-            &>ol {
+            &>.taskList {
+                
+                &>ol {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    
+                    &>li {
+                        
+                        &>div {
+                            height: 20px;
+                            display: flex;
+                            align-items: center;
+                            gap: 20px;
+
+                            &>button {
+                                border-radius: 15px;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1250px) {
+        max-width: 50%; 
+        width: 50%; 
+        min-width: 300px;
+        height: 31.25rem;
+        background: #eeeeee;
+        border: 2px black solid;
+        border-radius: 15px;
+        padding: 10px 40px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, 'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        overflow: scroll;
+        flex-direction: column;
+        position: absolute;
+        top: auto;
+        left: 5%;
+
+        & .firstRowTitle {
+            display: flex;
+            justify-content: space-between;
+
+            &>button {
+                height: 20px;
+                position: sticky; 
+                top: 1px;
+                right: 1px;
+            }
+
+            &>.title {
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
-                
-                &>li {
-                    
-                    &>div {
-                        height: 20px;
-                        display: flex;
-                        align-items: center;
-                        gap: 20px;
+                margin-bottom: 20px;
+        
+                &>label {
+                    margin: 0px;
+                    font-weight: normal;
+                    font-size: 32px;
+                }
+        
+                &>textarea {
+                    width: 90%;
+                    min-width: 18.75rem;
+                    height: 2.2rem;
+                    font-size: 28px;
+                }
+            }
+        }
 
-                        &>button {
-                            border-radius: 15px;
-                            cursor: pointer;
+        & .description {
+            display: flex;
+            flex-direction: column;
+
+            &>label {
+                margin: 0px;
+                font-weight: normal;
+                font-size: 32px;
+            }
+
+            &>textarea {
+                width: 90%;
+                min-width: 18.75rem;
+                height: 150px;
+                font-size: 28px;
+                
+            }
+        }
+        
+        & .task {
+
+            &>.firstRowTask {
+
+                &>button {
+                    cursor: pointer;
+                }
+            }
+
+            &>#newTaskBar {
+
+                &>div {
+
+                    &>button {
+                        cursor: pointer;
+                    }
+                }
+            }
+            
+            &>.taskList {
+                
+                &>ol {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    
+                    &>li {
+                        
+                        &>div {
+                            height: 20px;
+                            display: flex;
+                            align-items: center;
+                            gap: 20px;
+
+                            &>button {
+                                border-radius: 15px;
+                                cursor: pointer;
+                            }
                         }
                     }
                 }
@@ -140,18 +254,22 @@ const CreateCard = () => {
 
     
     async function createTask(){    // Add a new task from the value of #newTaskBar text area   
-        list.innerHTML = list.innerHTML + `<li> 
-                                                <div>
-                                                    <input type="checkbox" />
-                                                    <p>${newTask.value}</p>
-                                                    <button>Edit</button>
-                                                    <button>Delete</button>
-                                                </div>
-                                            </li>`;
-        newTask.value = '';   // Clear #newTaskBar text area
-
-        await delay(1); // Create a delay of 1ms before next instruction
-            setIsActive(!isActive);  // Set class .hidden to #newTaskBar
+        if(newTask.value.length>1){   // Check if something is write in the task before creating it
+            list.innerHTML = list.innerHTML + `<li> 
+                                                    <div>
+                                                        <input type="checkbox" />
+                                                        <p>${newTask.value}</p>
+                                                        <button onClick={editTask}>Edit</button>
+                                                        <button onClick={deleteTask}>Delete</button>
+                                                    </div>
+                                                </li>`;
+            newTask.value = '';   // Clear #newTaskBar text area
+    
+            await delay(1); // Create a delay of 1ms before next instruction
+                setIsActive(!isActive);  // Set class .hidden to #newTaskBar
+        } else {    // Alert the user if nothing is wrote before creating the task 
+            alert('You need to write something before creating the task');
+        }
     }
 
     // Close the card edition window 
@@ -161,7 +279,6 @@ const CreateCard = () => {
         desc.value = '';
         setIsActive(false);
     }
-
 
 
     return (

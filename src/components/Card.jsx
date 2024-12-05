@@ -37,6 +37,7 @@ const StyledCard = styled.div`
 `
 
 const Card = (
+    title,
     description,
     tasks
 ) => {
