@@ -259,8 +259,8 @@ const CreateCard = () => {
                                                     <div>
                                                         <input type="checkbox" />
                                                         <p>${newTask.value}</p>
-                                                        <button onClick={editTask}>Edit</button>
-                                                        <button onClick={deleteTask}>Delete</button>
+                                                        <button>Edit</button>
+                                                        <button>Delete</button>
                                                     </div>
                                                 </li>`;
             newTask.value = '';   // Clear #newTaskBar text area
