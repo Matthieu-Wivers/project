@@ -255,7 +255,7 @@ const CreateCard = () => {
     
     async function createTask(){    // Add a new task from the value of #newTaskBar text area   
         if(newTask.value.length>1){   // Check if something is write in the task before creating it
-            list.innerHTML = list.innerHTML + `<li> 
+            list.innerHTML = list.innerHTML + `<li class="tasksLI"> 
                                                     <div>
                                                         <input type="checkbox" />
                                                         <p>${newTask.value}</p>
@@ -278,6 +278,7 @@ const CreateCard = () => {
         title.value = '';
         desc.value = '';
         setIsActive(false);
+        list.innerHTML = ''
     }
 
 
