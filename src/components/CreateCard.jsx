@@ -280,7 +280,7 @@ export default function CreateCard () {
         title.value = '';
         desc.value = '';
         list.innerHTML = '';
-        document.querySelector('.editing').classList='card';
+        document.querySelector('.editing').classList = 'card';
     }
 
     // Create a card
@@ -288,15 +288,15 @@ export default function CreateCard () {
         if (title.value.length && desc.value.length>1) {    // If something is written in the title and the description, execute the function
             setIsActive(false);
             cardsList.innerHTML = cardsList.innerHTML + `<div class="card">
-                                                                    <h2 class="title">title</h2>
-                                                                    <h3 class="desc">test</h3>
-                                                                    <p>0/8</p>
-                                                                    <div>
-                                                                        <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';} class="editCard">Edit card</button>
-                                                                        <button onClick={event.currentTarget.parentNode.parentNode.remove()} class="deleteCard">Delete card</button>
-                                                                    </div>
-                                                                    <ol style="display:none;" class="listCard"></ol>
-                                                                </div>`;
+                                                            <h2 class="title">title</h2>
+                                                            <h3 class="desc">test</h3>
+                                                            <p>0/8</p>
+                                                            <div>
+                                                                <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';} class="editCard">Edit card</button>
+                                                                <button onClick={event.currentTarget.parentNode.parentNode.remove()} class="deleteCard">Delete card</button>
+                                                            </div>
+                                                            <ol style="display:none;" class="listCard"></ol>
+                                                        </div>`;
     
             await(5) // Create a delay of 5ms before the next instruction
                 cardsList.lastElementChild.querySelector('.title').innerHTML = `${title.value}`;
@@ -310,6 +310,7 @@ export default function CreateCard () {
                 desc.value = '';
                 list.innerHTML = '';
                 document.querySelector('.editing').remove();
+
         } else {    // If nothing is writtne in title or description, alert users
             if (title.value.length<1 && desc.value.length>1) {
                 alert('You need to set a title before creating the card')
