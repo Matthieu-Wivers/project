@@ -41,6 +41,15 @@ const StyledCardContainer = styled.div`
                 padding: 10px;
                 margin: auto;
                 border-radius: 15px;
+                
+                &>#priority {
+                    position: relative;
+                    border-radius: 15px 15px 0px 0px;
+                    top: -10px;
+                    left: -10px;
+                    width: 370px;
+                    height: 10px;
+                }
 
                 &>h2 {
                     font-size: 20px;
@@ -86,8 +95,59 @@ const StyledCardContainer = styled.div`
             padding: 10px;
             background-color: #000000;
             border-radius: 0px 0px 15px 15px;
-            
+
+            &>.card, &>.editing {
+                min-width: 350px;
+                max-width: 350px;
+                max-height: 250px;
+                display: flex;
+                background-color: #c7c7c7;
+                display: flex;
+                overflow: none;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 10px;
+                margin: auto;
+                border-radius: 15px;
+
+                &>#priority {
+                    position: relative;
+                    border-radius: 15px 15px 0px 0px;
+                    top: -10px;
+                    left: -10px;
+                    width: 370px;
+                    height: 10px;
+                }
+
+                &>h2 {
+                    font-size: 20px;
+                    margin: 0px;
+                }
+
+                &>h3 {
+                    font-size: 15px;
+                    margin: 0px;
+                }
+
+                &>p {
+                    background-color: green;
+                    border-radius: 5px;
+                    margin: 0px;
+                }
+            }
         }
+    }
+
+    & .veryImportant {
+        background-color: #EF476F;  
+    }
+    
+    & .important {
+        background-color: #FFD166;
+    }
+    
+    & .notImportant {
+        background-color: #26547c;
     }
 `
 

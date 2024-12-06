@@ -18,6 +18,7 @@ const StyledCreateCard = styled.div`
         position: fixed;
         top: auto;
         left: 15%;
+        z-index: 1;
 
         & .firstRowTitle {
             display: flex;
@@ -127,6 +128,7 @@ const StyledCreateCard = styled.div`
         position: absolute;
         top: auto;
         left: 5%;
+        z-index: 1;
 
         & .firstRowTitle {
             display: flex;
@@ -239,6 +241,7 @@ export default function CreateCard () {
     const title = document.querySelector('#title');
     const desc = document.querySelector('#desc');
     const cardsList = document.querySelector('.listCards');
+    const priorityValue = document.querySelector('#choosePriority');
 
     // Creation delay settings in ms
     function delay(ms) {
@@ -288,6 +291,7 @@ export default function CreateCard () {
         if (title.value.length && desc.value.length>1) {    // If something is written in the title and the description, execute the function
             setIsActive(false);
             cardsList.innerHTML = cardsList.innerHTML + `<div class="card">
+                                                            <div id="priority"></div>
                                                             <h2 class="title">title</h2>
                                                             <h3 class="desc">test</h3>
                                                             <p>0/8</p>
@@ -302,6 +306,16 @@ export default function CreateCard () {
                 cardsList.lastElementChild.querySelector('.title').innerHTML = `${title.value}`;
                 cardsList.lastElementChild.querySelector('.desc').innerHTML = `${desc.value}`;
                 cardsList.lastElementChild.querySelector('ol').innerHTML = `${list.innerHTML}`;
+                cardsList.lastElementChild.querySelector('#priority').classList = `${priorityValue.value}`;
+
+                // Class cards by importance
+                if (cardsList.lastElementChild.querySelector('#priority').classList=='veryImportant') {
+                    cardsList.lastElementChild.style.order = '0';
+                } else if (cardsList.lastElementChild.querySelector('#priority').classList=='important') {
+                    cardsList.lastElementChild.style.order = '1';
+                } else if (cardsList.lastElementChild.querySelector('#priority').classList=='notImportant') {
+                    cardsList.lastElementChild.style.order = '2';
+                }
     
     
             await(10) // Create a delay of 10ms before the next instruction
@@ -329,6 +343,15 @@ export default function CreateCard () {
                 <div className="title">
                     <label htmlFor="title">Title</label>
                     <textarea type="text" name="title" id="title"></textarea>
+                </div>
+                <div>
+                    <label htmlFor="priority">Priority : </label>
+                    <select name="priority" id="choosePriority">
+                        <option value="" id="choose" selected>Choose a priority</option>
+                        <option value="veryImportant" id="veryImportant">Very important</option>
+                        <option value="important" id="important">Important</option>
+                        <option value="notImportant" id="notImportant">Not important</option>
+                    </select>
                 </div>
                 <button onClick={closeCardEdition}>X</button>
             </div>
