@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Card from './Card';
+import CreateCard from './CreateCard';
 import PropTypes from 'prop-types';
 
 const StyledCardContainer = styled.div`
@@ -27,6 +27,37 @@ const StyledCardContainer = styled.div`
             padding: 10px;
             background-color: #000000;
             border-radius: 0px 0px 15px 15px;
+
+            &>.card {
+                min-width: 350px;
+                max-width: 350px;
+                height: 250px;
+                display: flex;
+                background-color: #c7c7c7;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 10px;
+                margin: auto;
+                border-radius: 15px;
+
+                &>h2 {
+                    font-size: 20px;
+                    margin: 0px;
+                }
+
+                &>h3 {
+                    font-size: 15px;
+                    margin: 0px;
+                }
+
+                &>p {
+                    background-color: green;
+                    border-radius: 5px;
+                    margin: 0px;
+                }
+            }
             
         }
     }
@@ -67,12 +98,7 @@ const CardContainer = () => {
                 <h2></h2>
             </div>
             <div className="listCards">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+
             </div>
         </StyledCardContainer>
     );

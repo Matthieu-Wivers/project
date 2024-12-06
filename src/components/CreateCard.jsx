@@ -232,12 +232,13 @@ const StyledCreateCard = styled.div`
     }
 `
 
-const CreateCard = () => {
+export default function CreateCard () {
     // Import HTML elements
     const list = document.querySelector('ol');
     const newTask = document.querySelector('#newTask');
     const title = document.querySelector('#title');
     const desc = document.querySelector('#desc');
+    const cardsList = document.querySelector('.listCards');
 
     // Creation delay settings in ms
     function delay(ms) {
@@ -278,7 +279,32 @@ const CreateCard = () => {
         title.value = '';
         desc.value = '';
         setIsActive(false);
-        list.innerHTML = ''
+        list.innerHTML = '';
+    }
+
+    async function addCard(){
+
+        cardsList.innerHTML = cardsList.innerHTML + `<div class="card">
+                                                                <h2 class="title">title</h2>
+                                                                <h3 class="desc">test</h3>
+                                                                <p>0/8</p>
+                                                                <div>
+                                                                    <button onClick={editCard}>Edit card</button>
+                                                                    <button onClick={event.currentTarget.parentNode.parentNode.remove()} class="deleteCard">Delete card</button>
+                                                                </div>
+                                                            </div>`;
+
+        await(5)
+            cardsList.lastElementChild.querySelector('.title').innerHTML = `${title.value}`;
+            cardsList.lastElementChild.querySelector('.desc').innerHTML = `${desc.value}`;
+
+
+        await(10)
+            document.querySelector('#createCard').style.display = "none";
+            title.value = '';
+            desc.value = '';
+            setIsActive(false);
+            list.innerHTML = '';
     }
 
 
@@ -311,9 +337,7 @@ const CreateCard = () => {
 		            <ol></ol>
                 </div>
             </div>
-            <button>Add card</button>
+            <button onClick={addCard}>Add card</button>
         </StyledCreateCard>
     );
 };
-
-export default CreateCard;

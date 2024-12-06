@@ -3,6 +3,7 @@ import CreateCard from './CreateCard';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import uniqid from "uniqid";
+import { useState } from 'react';
 
 const StyledCard = styled.div`
     min-width: 350px;
@@ -36,12 +37,11 @@ const StyledCard = styled.div`
     }
 `
 
-const Card = (
+export default function Card (
     title,
     description,
     tasks
-) => {
-    
+){
 
     return (
         <StyledCard>
@@ -55,5 +55,3 @@ const Card = (
         </StyledCard>
     );
 };
-
-export default Card;
