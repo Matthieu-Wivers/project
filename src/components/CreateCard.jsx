@@ -261,7 +261,7 @@ export default function CreateCard () {
                                                         <input type="checkbox" />
                                                         <p>${newTask.value}</p>
                                                         <button>Edit</button>
-                                                        <button>Delete</button>
+                                                        <button onClick={event.currentTarget.parentNode.parentNode.remove()}>Delete</button>
                                                     </div>
                                                 </li>`;
             newTask.value = '';   // Clear #newTaskBar text area
