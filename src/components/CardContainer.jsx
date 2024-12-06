@@ -28,7 +28,7 @@ const StyledCardContainer = styled.div`
             background-color: #000000;
             border-radius: 0px 0px 15px 15px;
 
-            &>.card {
+            &>.card, &>.editing {
                 min-width: 350px;
                 max-width: 350px;
                 height: 250px;

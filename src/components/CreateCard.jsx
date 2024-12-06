@@ -15,7 +15,7 @@ const StyledCreateCard = styled.div`
         font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, 'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         overflow: scroll;
         flex-direction: column;
-        position: absolute;
+        position: fixed;
         top: auto;
         left: 15%;
 
@@ -253,8 +253,8 @@ export default function CreateCard () {
         newTask.value = '';     // Clear #newTaskBar text area
     }
 
-    
-    async function createTask(){    // Add a new task from the value of #newTaskBar text area   
+    // Add a new task from the value of #newTaskBar text area
+    async function createTask(){       
         if(newTask.value.length>1){   // Check if something is write in the task before creating it
             list.innerHTML = list.innerHTML + `<li class="tasksLI"> 
                                                     <div>
@@ -276,31 +276,35 @@ export default function CreateCard () {
     // Close the card edition window 
     function closeCardEdition(){
         document.querySelector('#createCard').style.display = "none";
+        document.querySelector('.editing').styleList='card';
         title.value = '';
         desc.value = '';
         setIsActive(false);
         list.innerHTML = '';
     }
 
+    // Create a card
     async function addCard(){
-
         cardsList.innerHTML = cardsList.innerHTML + `<div class="card">
                                                                 <h2 class="title">title</h2>
                                                                 <h3 class="desc">test</h3>
                                                                 <p>0/8</p>
                                                                 <div>
-                                                                    <button onClick={editCard}>Edit card</button>
+                                                                    <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';} class="editCard">Edit card</button>
                                                                     <button onClick={event.currentTarget.parentNode.parentNode.remove()} class="deleteCard">Delete card</button>
                                                                 </div>
+                                                                <ol style="display:none;" class="listCard"></ol>
                                                             </div>`;
 
-        await(5)
+        await(5) // Create a delay of 5ms before the next instruction
             cardsList.lastElementChild.querySelector('.title').innerHTML = `${title.value}`;
             cardsList.lastElementChild.querySelector('.desc').innerHTML = `${desc.value}`;
+            cardsList.lastElementChild.querySelector('ol').innerHTML = `${list.innerHTML}`;
 
 
-        await(10)
+        await(10) // Create a delay of 10ms before the next instruction
             document.querySelector('#createCard').style.display = "none";
+            document.querySelector('.editing').remove();
             title.value = '';
             desc.value = '';
             setIsActive(false);
@@ -334,10 +338,13 @@ export default function CreateCard () {
                     </div>
                 </div> 
                 <div className="taskList">
-		            <ol></ol>
+                    <textarea name="listStorage" id="storageTask" type="text" className="hidden"></textarea>
+		            <ol id="listTasks"></ol>
                 </div>
             </div>
             <button onClick={addCard}>Add card</button>
         </StyledCreateCard>
     );
 };
+
+//document.querySelector('#storageTask').value=event.currentTarget.parentNode.parentNode.querySelector('.listCard').innerHTML
