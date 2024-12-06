@@ -275,40 +275,50 @@ export default function CreateCard () {
 
     // Close the card edition window 
     function closeCardEdition(){
+        setIsActive(false);
         document.querySelector('#createCard').style.display = "none";
-        document.querySelector('.editing').classList='card';
         title.value = '';
         desc.value = '';
-        setIsActive(false);
         list.innerHTML = '';
+        document.querySelector('.editing').classList='card';
     }
 
     // Create a card
     async function addCard(){
-        cardsList.innerHTML = cardsList.innerHTML + `<div class="card">
-                                                                <h2 class="title">title</h2>
-                                                                <h3 class="desc">test</h3>
-                                                                <p>0/8</p>
-                                                                <div>
-                                                                    <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';} class="editCard">Edit card</button>
-                                                                    <button onClick={event.currentTarget.parentNode.parentNode.remove()} class="deleteCard">Delete card</button>
-                                                                </div>
-                                                                <ol style="display:none;" class="listCard"></ol>
-                                                            </div>`;
-
-        await(5) // Create a delay of 5ms before the next instruction
-            cardsList.lastElementChild.querySelector('.title').innerHTML = `${title.value}`;
-            cardsList.lastElementChild.querySelector('.desc').innerHTML = `${desc.value}`;
-            cardsList.lastElementChild.querySelector('ol').innerHTML = `${list.innerHTML}`;
-
-
-        await(10) // Create a delay of 10ms before the next instruction
-            document.querySelector('#createCard').style.display = "none";
-            document.querySelector('.editing').remove();
-            title.value = '';
-            desc.value = '';
+        if (title.value.length && desc.value.length>1) {    // If something is written in the title and the description, execute the function
             setIsActive(false);
-            list.innerHTML = '';
+            cardsList.innerHTML = cardsList.innerHTML + `<div class="card">
+                                                                    <h2 class="title">title</h2>
+                                                                    <h3 class="desc">test</h3>
+                                                                    <p>0/8</p>
+                                                                    <div>
+                                                                        <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';} class="editCard">Edit card</button>
+                                                                        <button onClick={event.currentTarget.parentNode.parentNode.remove()} class="deleteCard">Delete card</button>
+                                                                    </div>
+                                                                    <ol style="display:none;" class="listCard"></ol>
+                                                                </div>`;
+    
+            await(5) // Create a delay of 5ms before the next instruction
+                cardsList.lastElementChild.querySelector('.title').innerHTML = `${title.value}`;
+                cardsList.lastElementChild.querySelector('.desc').innerHTML = `${desc.value}`;
+                cardsList.lastElementChild.querySelector('ol').innerHTML = `${list.innerHTML}`;
+    
+    
+            await(10) // Create a delay of 10ms before the next instruction
+                document.querySelector('#createCard').style.display = "none";
+                title.value = '';
+                desc.value = '';
+                list.innerHTML = '';
+                document.querySelector('.editing').remove();
+        } else {    // If nothing is writtne in title or description, alert users
+            if (title.value.length<1 && desc.value.length>1) {
+                alert('You need to set a title before creating the card')
+            } else if (title.value.length>1 && desc.value.length<1) {
+                alert('You need to set a description before creating the card')
+            } else {
+                alert('You need to set a title and a description before creating the card')
+            }
+        }
     }
 
 
