@@ -276,7 +276,7 @@ export default function CreateCard () {
     // Close the card edition window 
     function closeCardEdition(){
         document.querySelector('#createCard').style.display = "none";
-        document.querySelector('.editing').styleList='card';
+        document.querySelector('.editing').classList='card';
         title.value = '';
         desc.value = '';
         setIsActive(false);
