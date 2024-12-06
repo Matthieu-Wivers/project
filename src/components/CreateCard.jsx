@@ -292,7 +292,7 @@ export default function CreateCard () {
                                                             <h3 class="desc">test</h3>
                                                             <p>0/8</p>
                                                             <div>
-                                                                <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';} class="editCard">Edit card</button>
+                                                                <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';document.querySelector('#listTasks').innerHTML=event.target.parentNode.parentNode.querySelector('.listCard').innerHTML} class="editCard">Edit card</button>
                                                                 <button onClick={event.currentTarget.parentNode.parentNode.remove()} class="deleteCard">Delete card</button>
                                                             </div>
                                                             <ol style="display:none;" class="listCard"></ol>
