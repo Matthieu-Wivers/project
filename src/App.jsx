@@ -13,6 +13,7 @@ function App() {
 
   return (
     <>
+      <img src='./../public/project_logo.webp' class='logo'></img>
       <CreateButton />
       <CreateCard />
       <BodyCardContainer>

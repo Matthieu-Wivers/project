@@ -338,7 +338,6 @@ export default function CreateCard () {
                     </div>
                 </div> 
                 <div className="taskList">
-                    <textarea name="listStorage" id="storageTask" type="text" className="hidden"></textarea>
 		            <ol id="listTasks"></ol>
                 </div>
             </div>
@@ -346,5 +345,3 @@ export default function CreateCard () {
         </StyledCreateCard>
     );
 };
-
-//document.querySelector('#storageTask').value=event.currentTarget.parentNode.parentNode.querySelector('.listCard').innerHTML

@@ -7,3 +7,7 @@
 ::-webkit-scrollbar {
   height: 0px;
 }
+
+.logo {
+  width: 100px;
+}

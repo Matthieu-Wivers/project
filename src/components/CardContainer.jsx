@@ -31,11 +31,11 @@ const StyledCardContainer = styled.div`
             &>.card, &>.editing {
                 min-width: 350px;
                 max-width: 350px;
-                height: 250px;
+                max-height: 250px;
                 display: flex;
                 background-color: #c7c7c7;
-                overflow: hidden;
                 display: flex;
+                overflow: auto;
                 flex-direction: column;
                 justify-content: space-between;
                 padding: 10px;
@@ -64,6 +64,7 @@ const StyledCardContainer = styled.div`
 
     @media screen and (max-width: 1250px) {
         width: 95%;
+        height: 90%;
         display: flex;
         flex-direction: column;
         border-radius: 15px;
@@ -95,7 +96,7 @@ const CardContainer = () => {
     return (
         <StyledCardContainer>
             <div className="listName">
-                <h2></h2>
+                <h2>Title</h2>
             </div>
             <div className="listCards">
 
