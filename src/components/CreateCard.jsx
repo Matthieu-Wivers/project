@@ -8,7 +8,7 @@ const StyledCreateCard = styled.div`
     @media screen and (min-width: 1251px) {
         width: 900px; 
         height: 31.25rem;
-        background: #eeeeee;
+        background: #818181;
         border: 2px black solid;
         border-radius: 15px;
         padding: 10px 40px;
@@ -23,6 +23,7 @@ const StyledCreateCard = styled.div`
         & .firstRowTitle {
             display: flex;
             justify-content: space-between;
+            gap: 20px;
 
             &>button {
                 height: 20px;
@@ -38,7 +39,7 @@ const StyledCreateCard = styled.div`
         
                 &>label {
                     margin: 0px;
-                    font-weight: normal;
+                    font-weight: bold;
                     font-size: 32px;
                 }
         
@@ -46,6 +47,110 @@ const StyledCreateCard = styled.div`
                     width: 18.75rem;
                     height: 2.2rem;
                     font-size: 28px;
+                    background: #cccccc;
+                }
+            }
+
+            &>.label {
+                display: flex;
+                width: 100%;
+
+                &>.prio {
+
+                    &>label {
+                        margin: 0px;
+                        font-weight: bold;
+                        font-size: 32px;
+                        width: 30%;
+
+                    }
+
+                    &>select {
+                        width: 70%;
+                        min-width: 40px;
+                        height: 40px;
+                        font-size: 18px;
+                        background: #cccccc;
+                        cursor: pointer;
+                    }
+                }
+
+                &>.prio {
+
+                    &>label {
+                        margin: 0px;
+                        font-weight: bold;
+                        font-size: 32px;
+                        width: 30%;
+
+                    }
+
+                    &>select {
+                        width: 70%;
+                        min-width: 40px;
+                        height: 40px;
+                        font-size: 18px;
+                        background: #cccccc;
+                        cursor: pointer;
+
+                        &>#choose {
+                            color: gray;
+                        }
+                        
+                        &>#veryImportant {
+                            color: white;
+                            background: #EF476F;
+                        }
+                        
+                        &>#important {
+                            color: white;
+                            background: #FFD166;
+                        }
+                        
+                        &>#notImportant {
+                            color: white;
+                            background:#26547c;
+                        }
+                    }
+                }
+                
+                &>.state {
+
+                    &>label {
+                        margin: 0px;
+                        font-weight: bold;
+                        font-size: 32px;
+                        width: 30%;
+
+                    }
+
+                    &>select {
+                        width: 70%;
+                        min-width: 40px;
+                        height: 40px;
+                        font-size: 18px;
+                        background: #cccccc;
+                        cursor: pointer;
+
+                        &>#stateChoose {
+                            color: gray;
+                        }
+                        
+                        &>#stateToDo {
+                            color: white;
+                            background: #EF476F;
+                        }
+                        
+                        &>#stateInProgress {
+                            color: white;
+                            background: #FFD166;
+                        }
+                        
+                        &>#stateDone {
+                            color: white;
+                            background:#26547c;
+                        }
+                    }
                 }
             }
         }
@@ -56,7 +161,7 @@ const StyledCreateCard = styled.div`
 
             &>label {
                 margin: 0px;
-                font-weight: normal;
+                font-weight: bold;
                 font-size: 32px;
             }
 
@@ -64,6 +169,7 @@ const StyledCreateCard = styled.div`
                 width: 890px;
                 height: 150px;
                 font-size: 28px;
+                background: #cccccc;
                 
             }
         }
@@ -285,17 +391,18 @@ export default function CreateCard () {
 
     // Close the card edition window 
     function closeCardEdition(){
-        setIsActive(false);
         document.querySelector('#createCard').style.display = "none";
         title.value = '';
         desc.value = '';
         list.innerHTML = '';
+        priorityValue.value = 'choose';
+        stateValue.value = 'stateChoose';
         document.querySelector('.editing').classList = 'card';
     }
 
     // Create a card
     async function addCard(){
-        if (title.value.length && desc.value.length>1 && priorityValue.value!=='choose' && stateValue.value!=='stateChoose') {    // If something is written in the title and the description, execute the function
+        if (title.value.length && desc.value.length>1 && stateValue.value!=='stateChoose') {    // If something is written in the title and the description, execute the function
             setIsActive(false);
 
             if (stateValue.value=='toDo') {
@@ -305,8 +412,8 @@ export default function CreateCard () {
                                                                 <h3 class="desc"></h3>
                                                                 <p> ${count} / ${list.childElementCount}</p>
                                                                 <div>
-                                                                    <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';document.querySelector('#listTasks').innerHTML=event.target.parentNode.parentNode.querySelector('.listCard').innerHTML} class="editCard">Edit card</button>
-                                                                    <button onClick={event.currentTarget.parentNode.parentNode.classList.add('deleting');if(window.confirm('Delete?')){document.querySelector('.deleting').remove()};document.querySelector('.deleting').classList='card'} class="deleteCard">Delete card</button>
+                                                                    <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';document.querySelector('#listTasks').innerHTML=event.target.parentNode.parentNode.querySelector('.listCard').innerHTML;document.querySelector('#choosePriority').value=event.currentTarget.parentNode.parentNode.querySelector('#priority').classList;document.querySelector('#chooseState').value=event.currentTarget.parentNode.parentNode.parentNode.parentNode.querySelector('h2').classList} class="editCard">Edit card</button>
+                                                                    <button onClick={event.currentTarget.parentNode.parentNode.classList.add('deleting');if(window.confirm('Delete?')){document.querySelector('.deleting').remove()}else{document.querySelector('.deleting').classList='card'}} class="deleteCard">Delete card</button>
                                                                 </div>
                                                                 <ol style="display:none;" class="listCard"></ol>
                                                             </div>`;
@@ -323,6 +430,8 @@ export default function CreateCard () {
                     cardsList.lastElementChild.style.order = '1';
                 } else if (cardsList.lastElementChild.querySelector('#priority').classList=='notImportant') {
                     cardsList.lastElementChild.style.order = '2';
+                } else if (cardsList.lastElementChild.querySelector('#priority').classList=='choose') {
+                    cardsList.lastElementChild.style.order = '3';
                 }
             } else if (stateValue.value=='inProgress') {
                 cardsListInProgress.innerHTML = cardsListInProgress.innerHTML + `<div class="card">
@@ -331,8 +440,8 @@ export default function CreateCard () {
                                                                                     <h3 class="desc"></h3>
                                                                                     <p> ${count} / ${list.childElementCount}</p>
                                                                                     <div>
-                                                                                        <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';document.querySelector('#listTasks').innerHTML=event.target.parentNode.parentNode.querySelector('.listCard').innerHTML} class="editCard">Edit card</button>
-                                                                                        <button onClick={event.currentTarget.parentNode.parentNode.classList.add('deleting');if(window.confirm('Delete?')){document.querySelector('.deleting').remove()};document.querySelector('.deleting').classList='card'} class="deleteCard">Delete card</button>
+                                                                                        <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';document.querySelector('#listTasks').innerHTML=event.target.parentNode.parentNode.querySelector('.listCard').innerHTML;document.querySelector('#choosePriority').value=event.currentTarget.parentNode.parentNode.querySelector('#priority').classList;document.querySelector('#chooseState').value=event.currentTarget.parentNode.parentNode.parentNode.parentNode.querySelector('h2').classList} class="editCard">Edit card</button>
+                                                                                        <button onClick={event.currentTarget.parentNode.parentNode.classList.add('deleting');if(window.confirm('Delete?')){document.querySelector('.deleting').remove()}else{document.querySelector('.deleting').classList='card'}} class="deleteCard">Delete card</button>
                                                                                     </div>
                                                                                     <ol style="display:none;" class="listCard"></ol>
                                                                                 </div>`;
@@ -343,7 +452,6 @@ export default function CreateCard () {
                     cardsListInProgress.lastElementChild.querySelector('ol').innerHTML = `${list.innerHTML}`;
                     cardsListInProgress.lastElementChild.querySelector('#priority').classList = `${priorityValue.value}`;
 
-
                 // Class cards by importance
                 if (cardsListInProgress.lastElementChild.querySelector('#priority').classList=='veryImportant') {
                     cardsListInProgress.lastElementChild.style.order = '0';
@@ -351,6 +459,8 @@ export default function CreateCard () {
                     cardsListInProgress.lastElementChild.style.order = '1';
                 } else if (cardsListInProgress.lastElementChild.querySelector('#priority').classList=='notImportant') {
                     cardsListInProgress.lastElementChild.style.order = '2';
+                } else if (cardsListInProgress.lastElementChild.querySelector('#priority').classList=='choose') {
+                    cardsListInProgress.lastElementChild.style.order = '3';
                 }
             } else if (stateValue.value=='done') {
                 cardsListDone.innerHTML = cardsListDone.innerHTML + `<div class="card">
@@ -359,8 +469,8 @@ export default function CreateCard () {
                                                                         <h3 class="desc"></h3>
                                                                         <p> ${count} / ${list.childElementCount}</p>
                                                                         <div>
-                                                                            <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';document.querySelector('#listTasks').innerHTML=event.target.parentNode.parentNode.querySelector('.listCard').innerHTML} class="editCard">Edit card</button>
-                                                                            <button onClick={event.currentTarget.parentNode.parentNode.classList.add('deleting');if(window.confirm('Delete?')){document.querySelector('.deleting').remove()};document.querySelector('.deleting').classList='card'} class="deleteCard">Delete card</button>
+                                                                            <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';document.querySelector('#listTasks').innerHTML=event.target.parentNode.parentNode.querySelector('.listCard').innerHTML;document.querySelector('#choosePriority').value=event.currentTarget.parentNode.parentNode.querySelector('#priority').classList;document.querySelector('#chooseState').value=event.currentTarget.parentNode.parentNode.parentNode.parentNode.querySelector('h2').classList} class="editCard">Edit card</button>
+                                                                            <button onClick={event.currentTarget.parentNode.parentNode.classList.add('deleting');if(window.confirm('Delete?')){document.querySelector('.deleting').remove()}else{document.querySelector('.deleting').classList='card'}} class="deleteCard">Delete card</button>
                                                                         </div>
                                                                         <ol style="display:none;" class="listCard"></ol>
                                                                     </div>`;
@@ -378,16 +488,18 @@ export default function CreateCard () {
                     cardsListDone.lastElementChild.style.order = '1';
                 } else if (cardsListDone.lastElementChild.querySelector('#priority').classList=='notImportant') {
                     cardsListDone.lastElementChild.style.order = '2';
+                } else if (cardsListDone.lastElementChild.querySelector('#priority').classList=='choose') {
+                    cardsListDone.lastElementChild.style.order = '3';
                 }
             }
-
-    
     
             await(10) // Create a delay of 10ms before the next instruction
                 document.querySelector('#createCard').style.display = "none";
                 title.value = '';
                 desc.value = '';
                 list.innerHTML = '';
+                priorityValue.value = 'choose';
+                stateValue.value = 'stateChoose';
                 document.querySelector('.editing').remove();
 
         } else {    // If nothing is writtne in title or description, alert users
@@ -395,8 +507,6 @@ export default function CreateCard () {
                 alert('You need to set a title before creating the card')
             } else if (title.value.length>1 && desc.value.length<1) {
                 alert('You need to set a description before creating the card')
-            } else if (priorityValue.value=='choose') {
-                alert('You need to set a priority before creating the card')
             } else if (stateValue.value=='stateChoose') {
                 alert('You need to set a state before creating the card')
             } else {
@@ -413,21 +523,25 @@ export default function CreateCard () {
                     <label htmlFor="title">Title</label>
                     <textarea type="text" name="title" id="title"></textarea>
                 </div>
-                <div>
-                    <label htmlFor="priority">Priority : </label>
-                    <select name="priority" id="choosePriority">
-                        <option value="choose" id="choose" selected>Choose a priority</option>
-                        <option value="veryImportant" id="veryImportant">Very important</option>
-                        <option value="important" id="important">Important</option>
-                        <option value="notImportant" id="notImportant">Not important</option>
-                    </select>
-                    <label htmlFor="state">State : </label>
-                    <select name="state" id="chooseState">
-                        <option value="stateChoose" id="stateChoose" selected>Choose a state</option>
-                        <option value="toDo" id="stateToDo">To Do</option>
-                        <option value="inProgress" id="stateInProgress">In progress</option>
-                        <option value="done" id="stateDone">Done</option>
-                    </select>
+                <div class="label">
+                    <div class="prio">
+                        <label htmlFor="priority">Priority : </label>
+                        <select name="priority" id="choosePriority" defaultValue="choose">
+                            <option value="choose" id="choose">No priority</option>
+                            <option value="veryImportant" id="veryImportant">Very important</option>
+                            <option value="important" id="important">Important</option>
+                            <option value="notImportant" id="notImportant">Not important</option>
+                        </select>
+                    </div>
+                    <div class="state">
+                        <label htmlFor="state">State : </label>
+                        <select name="state" id="chooseState" defaultValue="stateChoose">
+                            <option value="stateChoose" id="stateChoose">Choose a state</option>
+                            <option value="toDo" id="stateToDo">To Do</option>
+                            <option value="inProgress" id="stateInProgress">In progress</option>
+                            <option value="done" id="stateDone">Done</option>
+                        </select>
+                    </div>
                 </div>
                 <button onClick={closeCardEdition}>X</button>
             </div>
@@ -441,7 +555,7 @@ export default function CreateCard () {
                     <button onClick={handleClick}>Add task</button>
                 </div>
                 <div id='newTaskBar' className={isActive ? 'shown' : 'hidden'}>
-                    <textarea name="newTask" id="newTask"></textarea>
+                    <textarea name="newTask" id="newTask" defaultValue=""></textarea>
                     <div>
                         <button onClick={createTask}>Create task</button>
                         <button onClick={handleClick}>Cancel</button>

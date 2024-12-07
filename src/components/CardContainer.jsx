@@ -156,7 +156,7 @@ export default function CardContainerToDo () {
     return (
         <StyledCardContainer>
             <div className="listName">
-                <h2>To do</h2>
+                <h2 className="toDo">To do</h2>
             </div>
             <div className="listCardsToDo listCards">
 
@@ -169,7 +169,7 @@ export function CardContainerInProgress () {
     return (
         <StyledCardContainer>
             <div className="listName">
-                <h2>In Progress</h2>
+                <h2 className="inProgress">In Progress</h2>
             </div>
             <div className="listCardsInProgress listCards">
 
@@ -182,7 +182,7 @@ export function CardContainerDone () {
     return (
         <StyledCardContainer>
             <div className="listName">
-                <h2>Done</h2>
+                <h2 className="done">Done</h2>
             </div>
             <div className="listCardsDone listCards">
 
