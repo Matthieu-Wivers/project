@@ -242,6 +242,9 @@ export default function CreateCard () {
     const desc = document.querySelector('#desc');
     const cardsList = document.querySelector('.listCards');
     const priorityValue = document.querySelector('#choosePriority');
+    const checkbox = document.querySelector('#checkbox')
+
+    let count = 0;
 
     // Creation delay settings in ms
     function delay(ms) {
@@ -255,16 +258,17 @@ export default function CreateCard () {
         setIsActive(!isActive); // Set class .shown to #newTaskBar
         newTask.value = '';     // Clear #newTaskBar text area
     }
+    
 
     // Add a new task from the value of #newTaskBar text area
     async function createTask(){       
         if(newTask.value.length>1){   // Check if something is write in the task before creating it
             list.innerHTML = list.innerHTML + `<li class="tasksLI"> 
                                                     <div>
-                                                        <input type="checkbox" />
+                                                        <input type="checkbox" id="checkbox"/>
                                                         <p>${newTask.value}</p>
                                                         <button>Edit</button>
-                                                        <button onClick={event.currentTarget.parentNode.parentNode.remove()}>Delete</button>
+                                                        <button onClick={event.currentTarget.parentNode.parentNode.classList='deleting';if(window.confirm('Delete?')){document.querySelector('.deleting').remove()}else{document.querySelector('.deleting').styleList=''}}>Delete</button>
                                                     </div>
                                                 </li>`;
             newTask.value = '';   // Clear #newTaskBar text area
@@ -288,16 +292,16 @@ export default function CreateCard () {
 
     // Create a card
     async function addCard(){
-        if (title.value.length && desc.value.length>1) {    // If something is written in the title and the description, execute the function
+        if (title.value.length && desc.value.length>1 && priorityValue.value!=='choose') {    // If something is written in the title and the description, execute the function
             setIsActive(false);
             cardsList.innerHTML = cardsList.innerHTML + `<div class="card">
                                                             <div id="priority"></div>
                                                             <h2 class="title">title</h2>
                                                             <h3 class="desc">test</h3>
-                                                            <p>0/8</p>
+                                                            <p> ${count} / ${list.childElementCount}</p>
                                                             <div>
                                                                 <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';document.querySelector('#listTasks').innerHTML=event.target.parentNode.parentNode.querySelector('.listCard').innerHTML} class="editCard">Edit card</button>
-                                                                <button onClick={event.currentTarget.parentNode.parentNode.remove()} class="deleteCard">Delete card</button>
+                                                                <button onClick={if(window.confirm('Delete?')){document.querySelector('.card').remove()}} class="deleteCard">Delete card</button>
                                                             </div>
                                                             <ol style="display:none;" class="listCard"></ol>
                                                         </div>`;
@@ -330,6 +334,8 @@ export default function CreateCard () {
                 alert('You need to set a title before creating the card')
             } else if (title.value.length>1 && desc.value.length<1) {
                 alert('You need to set a description before creating the card')
+            } else if (priorityValue.value=='choose') {
+                alert('You need to set a priority before creating the card')
             } else {
                 alert('You need to set a title and a description before creating the card')
             }
@@ -347,7 +353,7 @@ export default function CreateCard () {
                 <div>
                     <label htmlFor="priority">Priority : </label>
                     <select name="priority" id="choosePriority">
-                        <option value="" id="choose" selected>Choose a priority</option>
+                        <option value="choose" id="choose" selected>Choose a priority</option>
                         <option value="veryImportant" id="veryImportant">Very important</option>
                         <option value="important" id="important">Important</option>
                         <option value="notImportant" id="notImportant">Not important</option>
