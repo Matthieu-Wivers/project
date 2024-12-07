@@ -1,8 +1,8 @@
 import React from 'react';
 import uniqid from "uniqid";
 import styled from 'styled-components';
-import CardContainer from './CardContainer';
-import Card from './Card';
+import CardContainerToDo from './CardContainer';
+import { CardContainerInProgress, CardContainerDone } from './CardContainer';
 
 const StyledBodyCardContainer = styled.div `
     @media screen and (min-width: 1251px) {
@@ -21,9 +21,9 @@ const StyledBodyCardContainer = styled.div `
 const BodyCardContainer = () => {
     return (
         <StyledBodyCardContainer>
-            <CardContainer></CardContainer>
-            <CardContainer></CardContainer>
-            <CardContainer></CardContainer>
+            <CardContainerToDo></CardContainerToDo>
+            <CardContainerInProgress></CardContainerInProgress>
+            <CardContainerDone></CardContainerDone>
         </StyledBodyCardContainer>
     );
 };

@@ -240,9 +240,12 @@ export default function CreateCard () {
     const newTask = document.querySelector('#newTask');
     const title = document.querySelector('#title');
     const desc = document.querySelector('#desc');
-    const cardsList = document.querySelector('.listCards');
+        const cardsList = document.querySelector('.listCardsToDo');
+        const cardsListInProgress = document.querySelector('.listCardsInProgress');
+        const cardsListDone = document.querySelector('.listCardsDone');
     const priorityValue = document.querySelector('#choosePriority');
-    const checkbox = document.querySelector('#checkbox')
+    const stateValue = document.querySelector('#chooseState');
+    const checkbox = document.querySelector('#checkbox');
 
     let count = 0;
 
@@ -292,25 +295,26 @@ export default function CreateCard () {
 
     // Create a card
     async function addCard(){
-        if (title.value.length && desc.value.length>1 && priorityValue.value!=='choose') {    // If something is written in the title and the description, execute the function
+        if (title.value.length && desc.value.length>1 && priorityValue.value!=='choose' && stateValue.value!=='stateChoose') {    // If something is written in the title and the description, execute the function
             setIsActive(false);
-            cardsList.innerHTML = cardsList.innerHTML + `<div class="card">
-                                                            <div id="priority"></div>
-                                                            <h2 class="title">title</h2>
-                                                            <h3 class="desc">test</h3>
-                                                            <p> ${count} / ${list.childElementCount}</p>
-                                                            <div>
-                                                                <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';document.querySelector('#listTasks').innerHTML=event.target.parentNode.parentNode.querySelector('.listCard').innerHTML} class="editCard">Edit card</button>
-                                                                <button onClick={if(window.confirm('Delete?')){document.querySelector('.card').remove()}} class="deleteCard">Delete card</button>
-                                                            </div>
-                                                            <ol style="display:none;" class="listCard"></ol>
-                                                        </div>`;
-    
-            await(5) // Create a delay of 5ms before the next instruction
-                cardsList.lastElementChild.querySelector('.title').innerHTML = `${title.value}`;
-                cardsList.lastElementChild.querySelector('.desc').innerHTML = `${desc.value}`;
-                cardsList.lastElementChild.querySelector('ol').innerHTML = `${list.innerHTML}`;
-                cardsList.lastElementChild.querySelector('#priority').classList = `${priorityValue.value}`;
+
+            if (stateValue.value=='toDo') {
+                cardsList.innerHTML = cardsList.innerHTML + `<div class="card">
+                                                                <div id="priority"></div>
+                                                                <h2 class="title"></h2>
+                                                                <h3 class="desc"></h3>
+                                                                <p> ${count} / ${list.childElementCount}</p>
+                                                                <div>
+                                                                    <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';document.querySelector('#listTasks').innerHTML=event.target.parentNode.parentNode.querySelector('.listCard').innerHTML} class="editCard">Edit card</button>
+                                                                    <button onClick={if(window.confirm('Delete?')){document.querySelector('.card').remove()}} class="deleteCard">Delete card</button>
+                                                                </div>
+                                                                <ol style="display:none;" class="listCard"></ol>
+                                                            </div>`;
+                await(5) // Create a delay of 5ms before the next instruction
+                    cardsList.lastElementChild.querySelector('.title').innerHTML = `${title.value}`;
+                    cardsList.lastElementChild.querySelector('.desc').innerHTML = `${desc.value}`;
+                    cardsList.lastElementChild.querySelector('ol').innerHTML = `${list.innerHTML}`;
+                    cardsList.lastElementChild.querySelector('#priority').classList = `${priorityValue.value}`;
 
                 // Class cards by importance
                 if (cardsList.lastElementChild.querySelector('#priority').classList=='veryImportant') {
@@ -320,6 +324,63 @@ export default function CreateCard () {
                 } else if (cardsList.lastElementChild.querySelector('#priority').classList=='notImportant') {
                     cardsList.lastElementChild.style.order = '2';
                 }
+            } else if (stateValue.value=='inProgress') {
+                cardsListInProgress.innerHTML = cardsListInProgress.innerHTML + `<div class="card">
+                                                                                    <div id="priority"></div>
+                                                                                    <h2 class="title"></h2>
+                                                                                    <h3 class="desc"></h3>
+                                                                                    <p> ${count} / ${list.childElementCount}</p>
+                                                                                    <div>
+                                                                                        <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';document.querySelector('#listTasks').innerHTML=event.target.parentNode.parentNode.querySelector('.listCard').innerHTML} class="editCard">Edit card</button>
+                                                                                        <button onClick={if(window.confirm('Delete?')){document.querySelector('.card').remove()}} class="deleteCard">Delete card</button>
+                                                                                    </div>
+                                                                                    <ol style="display:none;" class="listCard"></ol>
+                                                                                </div>`;
+
+                await(5) // Create a delay of 5ms before the next instruction
+                    cardsListInProgress.lastElementChild.querySelector('.title').innerHTML = `${title.value}`;
+                    cardsListInProgress.lastElementChild.querySelector('.desc').innerHTML = `${desc.value}`;
+                    cardsListInProgress.lastElementChild.querySelector('ol').innerHTML = `${list.innerHTML}`;
+                    cardsListInProgress.lastElementChild.querySelector('#priority').classList = `${priorityValue.value}`;
+
+
+                // Class cards by importance
+                if (cardsListInProgress.lastElementChild.querySelector('#priority').classList=='veryImportant') {
+                    cardsListInProgress.lastElementChild.style.order = '0';
+                } else if (cardsListInProgress.lastElementChild.querySelector('#priority').classList=='important') {
+                    cardsListInProgress.lastElementChild.style.order = '1';
+                } else if (cardsListInProgress.lastElementChild.querySelector('#priority').classList=='notImportant') {
+                    cardsListInProgress.lastElementChild.style.order = '2';
+                }
+            } else if (stateValue.value=='done') {
+                cardsListDone.innerHTML = cardsListDone.innerHTML + `<div class="card">
+                                                                        <div id="priority"></div>
+                                                                        <h2 class="title"></h2>
+                                                                        <h3 class="desc"></h3>
+                                                                        <p> ${count} / ${list.childElementCount}</p>
+                                                                        <div>
+                                                                            <button onClick={document.querySelector('#createCard').style.display="flex";document.querySelector('#title').value=event.currentTarget.parentNode.parentNode.querySelector('.title').innerHTML;document.querySelector('#desc').value=event.currentTarget.parentNode.parentNode.querySelector('.desc').innerHTML;event.currentTarget.parentNode.parentNode.classList='editing';document.querySelector('#listTasks').innerHTML=event.target.parentNode.parentNode.querySelector('.listCard').innerHTML} class="editCard">Edit card</button>
+                                                                            <button onClick={if(window.confirm('Delete?')){document.querySelector('.card').remove()}} class="deleteCard">Delete card</button>
+                                                                        </div>
+                                                                        <ol style="display:none;" class="listCard"></ol>
+                                                                    </div>`;
+
+                await(5) // Create a delay of 5ms before the next instruction
+                    cardsListDone.lastElementChild.querySelector('.title').innerHTML = `${title.value}`;
+                    cardsListDone.lastElementChild.querySelector('.desc').innerHTML = `${desc.value}`;
+                    cardsListDone.lastElementChild.querySelector('ol').innerHTML = `${list.innerHTML}`;
+                    cardsListDone.lastElementChild.querySelector('#priority').classList = `${priorityValue.value}`;
+
+                // Class cards by importance
+                if (cardsListDone.lastElementChild.querySelector('#priority').classList=='veryImportant') {
+                    cardsListDone.lastElementChild.style.order = '0';
+                } else if (cardsListDone.lastElementChild.querySelector('#priority').classList=='important') {
+                    cardsListDone.lastElementChild.style.order = '1';
+                } else if (cardsListDone.lastElementChild.querySelector('#priority').classList=='notImportant') {
+                    cardsListDone.lastElementChild.style.order = '2';
+                }
+            }
+
     
     
             await(10) // Create a delay of 10ms before the next instruction
@@ -336,6 +397,8 @@ export default function CreateCard () {
                 alert('You need to set a description before creating the card')
             } else if (priorityValue.value=='choose') {
                 alert('You need to set a priority before creating the card')
+            } else if (stateValue.value=='stateChoose') {
+                alert('You need to set a state before creating the card')
             } else {
                 alert('You need to set a title and a description before creating the card')
             }
@@ -357,6 +420,13 @@ export default function CreateCard () {
                         <option value="veryImportant" id="veryImportant">Very important</option>
                         <option value="important" id="important">Important</option>
                         <option value="notImportant" id="notImportant">Not important</option>
+                    </select>
+                    <label htmlFor="state">State : </label>
+                    <select name="state" id="chooseState">
+                        <option value="stateChoose" id="stateChoose" selected>Choose a state</option>
+                        <option value="toDo" id="stateToDo">To Do</option>
+                        <option value="inProgress" id="stateInProgress">In progress</option>
+                        <option value="done" id="stateDone">Done</option>
                     </select>
                 </div>
                 <button onClick={closeCardEdition}>X</button>

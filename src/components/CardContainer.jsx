@@ -152,17 +152,41 @@ const StyledCardContainer = styled.div`
 `
 
 
-const CardContainer = () => {
+export default function CardContainerToDo () {
     return (
         <StyledCardContainer>
             <div className="listName">
-                <h2>Title</h2>
+                <h2>To do</h2>
             </div>
-            <div className="listCards">
+            <div className="listCardsToDo listCards">
 
             </div>
         </StyledCardContainer>
     );
 };
 
-export default CardContainer;
+export function CardContainerInProgress () {
+    return (
+        <StyledCardContainer>
+            <div className="listName">
+                <h2>In Progress</h2>
+            </div>
+            <div className="listCardsInProgress listCards">
+
+            </div>
+        </StyledCardContainer>
+    );
+};
+
+export function CardContainerDone () {
+    return (
+        <StyledCardContainer>
+            <div className="listName">
+                <h2>Done</h2>
+            </div>
+            <div className="listCardsDone listCards">
+
+            </div>
+        </StyledCardContainer>
+    );
+};
