@@ -1,14 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import CreateCard from './components/CreateCard'
 import CreateButton from './components/CreateButton'
-import CardContainer from './components/CardContainer'
 import BodyCardContainer from './components/BodyCardContainer'
+import DataInfo from './DataInfo';
+import DataAdd from './DataAdd';
+import axios from 'axios'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const baseUrl = "https://greenvelvet.alwaysdata.net/pfc";
+  
+  //pas dans la vraie vie
+  //b366a207033c1d613a24ba2aa52176be579c38a3 -> React Redux
+  //a3d3494426a6cecffd3614d81dce6443592b6669 
+  const token  = "a3d3494426a6cecffd3614d81dce6443592b6669";
 
   return (
     <>

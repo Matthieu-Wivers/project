@@ -694,8 +694,8 @@ export default function CreateCard () {
                     <label htmlFor="title">Title</label>
                     <textarea type="text" name="title" id="title"></textarea>
                 </div>
-                <div class="label">
-                    <div class="prio">
+                <div className="label">
+                    <div className="prio">
                         <label htmlFor="priority">Priority : </label>
                         <select name="priority" id="choosePriority" defaultValue="choose">
                             <option value="choose" id="choose">No priority</option>
@@ -704,7 +704,7 @@ export default function CreateCard () {
                             <option value="notImportant" id="notImportant">Not important</option>
                         </select>
                     </div>
-                    <div class="state">
+                    <div className="state">
                         <label htmlFor="state">State : </label>
                         <select name="state" id="chooseState" defaultValue="stateChoose">
                             <option value="stateChoose" id="stateChoose">Choose a state</option>
