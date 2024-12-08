@@ -6,17 +6,23 @@ import PropTypes from 'prop-types';
 const StyledCardContainer = styled.div`
     @media screen and (min-width: 1251px) {
         width: 370px;
+        height: 100%;
         display: flex;
         flex-direction: column;
         border-radius: 15px;
         min-width: 400px;
         background-color: gray;
+        border: solid 1px black;
+        box-shadow: 5px 5px 10px black;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, 'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         
         &>.listName {
             height: 70px;
             
             &>h2 {
                 margin: 20px;
+                font-weight: bold;
+                color: white;
             }
         }
         
@@ -54,17 +60,44 @@ const StyledCardContainer = styled.div`
                 &>h2 {
                     font-size: 20px;
                     margin: 0px;
+                    font-weight: bold;
                 }
 
                 &>h3 {
                     font-size: 15px;
                     margin: 0px;
+                    font-weight: normal;
                 }
 
                 &>p {
                     background-color: green;
+                    margin-bottom: 10px;
                     border-radius: 5px;
-                    margin: 0px;
+                    color: white;
+                    font-weight: bold;
+                    width: 50px;
+                    text-align: center;
+                }
+
+                &>div {
+                    display: flex;
+                    gap: 10px;
+                    justify-content: space-around;
+
+                    &>button {
+                        width: 45%;
+                        font-size: 15px;
+                        height: 25px;
+                        background: #EF476F;
+                        border: solid 1px #c7284d;
+                        border-radius: 5px;
+                        color: white;
+                    }
+
+                    &>button:first-child {
+                        background: #26547c;
+                        border: solid 1px #0d273d;
+                    }
                 }
             }
             
@@ -78,13 +111,17 @@ const StyledCardContainer = styled.div`
         flex-direction: column;
         border-radius: 15px;
         min-width: 400px;
+        border: solid 1px black;
         background-color: gray;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, 'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         
         &>.listName {
             height: 70px;
             
             &>h2 {
                 margin: 20px;
+                font-weight: bold;
+                color: white;
             }
         }
         
@@ -122,17 +159,38 @@ const StyledCardContainer = styled.div`
                 &>h2 {
                     font-size: 20px;
                     margin: 0px;
+                    font-weight: bold;
                 }
 
                 &>h3 {
                     font-size: 15px;
                     margin: 0px;
+                    font-weight: normal;
                 }
 
                 &>p {
                     background-color: green;
+                    margin-bottom: 10px;
                     border-radius: 5px;
-                    margin: 0px;
+                    color: white;
+                    font-weight: bold;
+                    width: 50px;
+                    text-align: center;
+                }
+
+                &>div {
+                    display: flex;
+                    gap: 10px;
+                    justify-content: space-around;
+
+                    &>button {
+                        width: 45%;
+                        font-size: 15px;
+                        height: 25px;
+                        background: #EF476F;
+                        border: solid 1px #c7284d;
+                        border-radius: 5px;
+                    }
                 }
             }
         }

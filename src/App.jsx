@@ -12,8 +12,10 @@ function App() {
 
   return (
     <>
+    <div className="header">
       <img src='./../public/project_logo.webp' className='logo'></img>
       <CreateButton />
+    </div>
       <CreateCard />
       <BodyCardContainer>
       </BodyCardContainer>

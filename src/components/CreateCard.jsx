@@ -20,6 +20,16 @@ const StyledCreateCard = styled.div`
         left: 15%;
         z-index: 1;
 
+        &>.addCard {
+            display: flex;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            background: #26547c;
+            border-radius: 5px;
+        }
+
         & .firstRowTitle {
             display: flex;
             justify-content: space-between;
@@ -27,9 +37,12 @@ const StyledCreateCard = styled.div`
 
             &>button {
                 height: 20px;
-                position: sticky; 
+                position: sticky;
+                color: white; 
                 top: 1px;
                 right: 1px;
+                background: #EF476F;
+                border: solid 1px #c72c50;
             }
 
             &>.title {
@@ -179,16 +192,45 @@ const StyledCreateCard = styled.div`
             &>.firstRowTask {
 
                 &>button {
+                    height: 40px;
+                    width: 90px;
+                    background: #26547c;
+                    border: solid 1px #102d47;
+                    color: white;
+                    font-weight: bold;
+                    border-radius: 5px;
+                    font-size: 15px;
                     cursor: pointer;
                 }
             }
 
             &>#newTaskBar {
+                
+                &>textarea {
+                    width: 100%;
+                    height: 40px;
+                    font-size: 28px;
+                    background: #cccccc;
+                }
 
                 &>div {
+                    display: flex;
+                    margin: 0px 5px;
+                    gap: 5px;
 
+                    
                     &>button {
+                        color: white;
+                        border-radius: 5px;
                         cursor: pointer;
+                    }
+                    
+                    &>.createTask {
+                        background: #FFD166;
+                    }
+
+                    &>.cancel {
+                        background: #EF476F;
                     }
                 }
             }
@@ -209,7 +251,7 @@ const StyledCreateCard = styled.div`
                             gap: 20px;
 
                             &>button {
-                                border-radius: 15px;
+                                border-radius: 5px;
                                 cursor: pointer;
                             }
                         }
@@ -224,7 +266,7 @@ const StyledCreateCard = styled.div`
         width: 50%; 
         min-width: 300px;
         height: 31.25rem;
-        background: #eeeeee;
+        background: #818181;
         border: 2px black solid;
         border-radius: 15px;
         padding: 10px 40px;
@@ -236,33 +278,133 @@ const StyledCreateCard = styled.div`
         left: 5%;
         z-index: 1;
 
+        &>.addCard {
+            display: flex;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            background: #26547c;
+            border-radius: 5px;
+        }
+
         & .firstRowTitle {
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
 
             &>button {
                 height: 20px;
-                position: sticky; 
-                top: 1px;
-                right: 1px;
+                width: 25px;
+                position: absolute;
+                color: white; 
+                top: 10px;
+                right: 10px;
+                background: #EF476F;
+                border: solid 1px #c72c50;
             }
 
             &>.title {
                 display: flex;
                 flex-direction: column;
                 margin-bottom: 20px;
+                order: 2;
         
                 &>label {
                     margin: 0px;
-                    font-weight: normal;
+                    font-weight: bold;
                     font-size: 32px;
                 }
         
                 &>textarea {
-                    width: 90%;
-                    min-width: 18.75rem;
+                    width: 100%;
                     height: 2.2rem;
                     font-size: 28px;
+                    background: #cccccc;
+                }
+            }
+
+            &>.label {
+                order: 1;
+                display: flex;
+                gap: 10px;
+
+                &>.prio {
+
+                    &>label {
+                        margin: 0px;
+                        font-weight: bold;
+                        font-size: 20px;
+                        width: 100%;
+
+                    }
+
+                    &>select {
+                        width: 100%;
+                        min-width: 40px;
+                        height: 40px;
+                        font-size: 18px;
+                        background: #cccccc;
+                        cursor: pointer;
+
+                        &>#choose {
+                            color: gray;
+                        }
+                        
+                        &>#veryImportant {
+                            color: white;
+                            background: #EF476F;
+                        }
+                        
+                        &>#important {
+                            color: white;
+                            background: #FFD166;
+                        }
+                        
+                        &>#notImportant {
+                            color: white;
+                            background:#26547c;
+                        }
+                    }
+                }
+                
+                &>.state {
+
+                    &>label {
+                        margin: 0px;
+                        font-weight: bold;
+                        font-size: 20px;
+                        width: 30%;
+
+                    }
+
+                    &>select {
+                        width: 100%;
+                        min-width: 40px;
+                        height: 40px;
+                        font-size: 18px;
+                        background: #cccccc;
+                        cursor: pointer;
+
+                        &>#stateChoose {
+                            color: gray;
+                        }
+                        
+                        &>#stateToDo {
+                            color: white;
+                            background: #EF476F;
+                        }
+                        
+                        &>#stateInProgress {
+                            color: white;
+                            background: #FFD166;
+                        }
+                        
+                        &>#stateDone {
+                            color: white;
+                            background:#26547c;
+                        }
+                    }
                 }
             }
         }
@@ -273,15 +415,15 @@ const StyledCreateCard = styled.div`
 
             &>label {
                 margin: 0px;
-                font-weight: normal;
+                font-weight: bold;
                 font-size: 32px;
             }
 
             &>textarea {
-                width: 90%;
-                min-width: 18.75rem;
+                width: 100%;
                 height: 150px;
                 font-size: 28px;
+                background: #cccccc;
                 
             }
         }
@@ -291,16 +433,45 @@ const StyledCreateCard = styled.div`
             &>.firstRowTask {
 
                 &>button {
+                    height: 40px;
+                    width: 90px;
+                    background: #26547c;
+                    border: solid 1px #102d47;
+                    color: white;
+                    font-weight: bold;
+                    border-radius: 5px;
+                    font-size: 15px;
                     cursor: pointer;
                 }
             }
 
             &>#newTaskBar {
+                
+                &>textarea {
+                    width: 100%;
+                    height: 40px;
+                    font-size: 28px;
+                    background: #cccccc;
+                }
 
                 &>div {
+                    display: flex;
+                    margin: 0px 5px;
+                    gap: 5px;
 
+                    
                     &>button {
+                        color: white;
+                        border-radius: 5px;
                         cursor: pointer;
+                    }
+                    
+                    &>.createTask {
+                        background: #FFD166;
+                    }
+
+                    &>.cancel {
+                        background: #EF476F;
                     }
                 }
             }
@@ -557,15 +728,15 @@ export default function CreateCard () {
                 <div id='newTaskBar' className={isActive ? 'shown' : 'hidden'}>
                     <textarea name="newTask" id="newTask" defaultValue=""></textarea>
                     <div>
-                        <button onClick={createTask}>Create task</button>
-                        <button onClick={handleClick}>Cancel</button>
+                        <button onClick={createTask} className="createTask">Create task</button>
+                        <button onClick={handleClick} className="cancel">Cancel</button>
                     </div>
                 </div> 
                 <div className="taskList">
 		            <ol id="listTasks"></ol>
                 </div>
             </div>
-            <button onClick={addCard}>Add card</button>
+            <button onClick={addCard} className="addCard">Add card</button>
         </StyledCreateCard>
     );
 };

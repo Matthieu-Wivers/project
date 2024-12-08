@@ -9,6 +9,7 @@ const StyledBodyCardContainer = styled.div `
             display: flex;
             gap: 20px;
             justify-content: center;
+            height: 100%;
     }
 
     @media screen and (max-width: 1250px) {
