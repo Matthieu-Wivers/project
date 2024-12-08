@@ -547,7 +547,6 @@ export default function CreateCard () {
                                                     <div>
                                                         <input type="checkbox" id="checkbox"/>
                                                         <p>${newTask.value}</p>
-                                                        <button>Edit</button>
                                                         <button onClick={event.currentTarget.parentNode.parentNode.classList='deleting';if(window.confirm('Delete?')){document.querySelector('.deleting').remove()}else{document.querySelector('.deleting').styleList=''}}>Delete</button>
                                                     </div>
                                                 </li>`;
